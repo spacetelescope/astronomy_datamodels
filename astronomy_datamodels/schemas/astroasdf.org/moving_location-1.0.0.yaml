@@ -1,0 +1,22 @@
+s%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/moving_location-1.0.0"
+title: |
+  Moving telescope location information.
+
+description: |
+  This schema contains the attributes defining the location 
+  of the telescope used assuming the telescope is moving, i.e., not located
+  at a fixed location on the surface of a solid solar system body.
+
+tag: "tag:stsci.edu/datamodels/moving_location-1.0.0"
+type: object
+properties:
+  location_function:
+    description: |
+      GWCS object that takes time as an argument (in the sepcified time standard)
+      and produces the coordinates of the telescope for that time in the specified
+      coordinate frame.
+    $ref: "tag:stsci.edu/schemas/gwcs"
+  required: [location_function]

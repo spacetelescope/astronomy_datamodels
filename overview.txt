@@ -1,0 +1,68 @@
+This will be converted to .rst format
+
+This is an outline of the data model for MOS data (and perhaps 
+generalizable to more cases)
+
+As I considered all kinds of grouping of data it worried me to use 
+hierarchical groups in yaml for that purpose since the order
+of groupings isn't necessarily obvious in more complex cases. 
+To take a more complex example suppose we want to collect all
+the data for a given target from different observations and
+detectors into one file, and also contain all the targets in 
+the same ASDF file. What should the order of grouping be?
+
+It could be:
+
+- target
+- exposure
+- detector
+- slit
+
+Or some other order may be desired. Further complicating this
+is that there are different possible levels of grouping that
+might be present. Perhaps there is only one detector; perhaps
+only one exposure, etc. Is a different schema needed for all
+these cases?
+
+I thougt it may make more sense to keep the organization as
+flat as possible and allow the software reading the data to
+decide how to nest the data elements, if that is necessary.
+
+To that end, one solution is to key the set of spectra with
+compound keys, where the key consists of multiple fields that
+are easily separated. In that way, the data may be selected 
+by any subset of key fields desired. Since YAML likes to use
+strings for keys (tuples not really natively supported), the
+key is a concatenation of the field values using a customizable
+separator character. Nominally a comma should be the default,
+but alternatives can be permitted if commas don't work for 
+some cases. 
+
+As an example, we may have the following key for the
+complex case:
+
+gods_nose,exp17821,CCD1,slitlet23-47 
+
+with the four fields:
+
+target: gods_nose
+exposure: exp17821
+detector: CCD1
+slit: slitlet23-47
+
+And with these a nested set of dicts can be constructed with
+the software if desired, or simply left for a more complex
+dictionary object (e.g., one that takes 4 fields as keys, 
+allowing wildcards or patterns).
+
+So the MOS schema has fields for key_fields, key_field_types,
+and key_field_separator (key_field_types implies conversion
+of string integers to integers.)
+
+It should be noted that this approach can be used for all sorts
+of potentially hierarchical groupings. For example with imaging,
+dithers of multiple detectors (e.g., NIRCAM) can be grouped by
+detector, filter, visit, proposal, etc. Using this approach
+does not impose a preferred ordering of how these are grouped. 
+Only that each level of grouping adds a new keyword field to 
+the list of data items. 

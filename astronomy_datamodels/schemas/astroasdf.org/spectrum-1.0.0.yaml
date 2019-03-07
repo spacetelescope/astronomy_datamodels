@@ -1,0 +1,55 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/spectrum-1.0.0"
+title: |
+  Spectrum data.
+
+description: |
+  This is the basic spectrum object. It may represent a 1, 2, or 3-d spectrum
+  data array.
+
+tag: "tag:stsci.edu/datamodels/spectrum-1.0.0"
+type: object
+properties:
+  sci:
+    description: |
+      The science data array
+    $ref: tag:stsci.edu/core/ndarray-1.0.0
+  dq:
+    description: |
+      The data quality array
+    $ref: tag:stsci.edu/core/ndarray-1.0.0
+  err:
+    description: |
+      The error (uncertainty) array [I am inclined to make this more general]
+    $ref: tag:stsci.edu/core/ndarray-1.0.0
+  wcs:
+    description: |
+      This contains a set of GWCS objects indexed by key
+    $ref: ".wcs-set-1.0.0";
+  aperture:
+    description: |
+      The aperture definition for the spectrum
+    $ref: ".spectrum-aperture-1.0.0"
+  target_id:
+    description: |
+      The id of the target in the aperture
+    type:
+      anyOf:
+        - integer
+        - string
+  background_corrected:
+    description: |
+      Is the spectrum background_corrected.
+    type: boolean
+  background_apertures:
+    description: |
+      What apertures should be used for background subtraction
+    type: array
+    items: [string]
+  meta:
+    description: |
+      Container for all non standard metadata and information
+    type: object
+required: [sci, wcs]

@@ -1,0 +1,51 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/mos_data-1.0.0"
+title: |
+  Standard container for Multiple Object Spectrograph data
+
+description: |
+  This is the standard container for Multiple Object Spectrograph data.
+  It is expected that the data contained have been calibrated and each
+  object extracted (in some manner) as an individual spectrum. That 
+  spectrum may have more than one spatial location (e.g., it may be
+  a single spatial point, 1d spatial data, or 2d spatial data 
+  corresponding to 1-d, 2-d and 3-d data arrays respectively).
+
+tag: "tag:stsci.edu/datamodels/mos_data-1.0.0"
+
+allOf:
+  - $ref: ".observation_context-1.0.0"
+  - type: object
+    properties:
+      data:
+        description: |
+          The holder of all extracted spectra and associated information. 
+          All spectra are keyed by a unique key. The form of this key
+          depends on whether the spectra are all in the same observation
+          or not. For single observations, they key is typically an aperture
+          ID of some sort. When multiple observations are combined into one
+          file, they key may be a combination of aperture ID and exposure ID.
+        type: object
+      key_separator:
+        description: |
+          The character used to split keys into multiple fields. In Python
+          this results in keys turning into tuples.
+        type: string
+      key_fields:
+        description:
+          This is a list of the field names for fields part of the key.
+        type: array
+        items: [string]
+      key_field_types:
+        description: |
+          This is used to indicate what types each key field (after separation)
+          should be converted to, the options being string or integer. The 
+          format of this field is simply a series of 's' and 'i' characters
+          corresponding to the number of key fields.
+        type: string
+      additionalProperties: $ref: "./spectrum-1.0.0"
+      required: [data]
+      
+

@@ -1,0 +1,40 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/observation_context-1.0.0"
+title: |
+  Useful information about the data.
+
+description: |
+  This is the common set of information useful for describing how the data
+  were taken and associated information about the observation(s).
+
+tag: "tag:stsci.edu/datamodels/observation_context-1.0.0"
+type: object
+properties:
+  telescope:
+    description: |
+      Information about the telescope used for obtaining the data
+    $ref ".telescope-1.0.0"
+  instrument:
+    description: |
+      Information about the instrument used for obtaining the data
+    $ref ".instrument-1.0.0"
+  proposal:
+    description: |
+      Information about the proposal (if any) that generated the data
+    $ref ".proposal-1.0.0"
+  observers:
+    description: |
+      Information about the observers that obtained the data
+    type: array
+    items [$ref: ".observer-1.0.0"]
+  target:
+    description: |
+      Information about the source(s) targeted by the data
+    $ref: ".targets-1.0.0"
+  associated_data:
+    description: |
+      General container for any data that is associated with the data
+    $ref: ".associated_data-1.0.0"
+  additionalProperties: true

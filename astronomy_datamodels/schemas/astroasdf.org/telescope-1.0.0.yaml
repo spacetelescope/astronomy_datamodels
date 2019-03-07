@@ -1,0 +1,67 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/telescope-1.0.0"
+title: |
+  Telescope description.
+
+description: |
+  This schema contains the attributes describing the telescope used.
+
+tag: "tag:stsci.edu/datamodels/telescope-1.0.0"
+type: object
+properties:
+  name:
+    description: |
+      The standard name for the telescope being used.
+    type: string
+  organization:
+    description: |
+      The name of the organization that operates the telescope
+    type: string
+  org_url:
+    description: |
+      The URL for the organization
+    type: string
+  telescope_url:
+    description: |
+      The URL for the telescope
+    type: string
+  telescope_type:
+    description: |
+      one or more standard terms for the kind of telescope (usually wavelength range)
+    type: array
+    items:
+      type: string
+      enum:
+        - Radio
+        - Microwave
+        - Millimeter-Wave
+        - IR
+        - Visible
+        - UV
+        - X-Ray
+        - Gamma-Ray
+        - Gravitational
+  location_name:
+    description: |
+      A string describing the location; may include addresses, states, countries,
+      spacecraft name, etc
+    type:
+      string
+  location:
+    description: |
+      An object with sufficient information to describe the location of the telescope
+      in a standard coordinate system. For ground-based telescopes this may simply be a
+      set of latitude, longitude, altitude values (and eventually solar system object);
+      for spacecraft, it may contain a model object of some sort that provides location
+      as a function of time in a standard coordinate system; or a cartesian coordinate
+      in a defined solar system coordinate system.
+    oneOf:
+      - type: $ref: ".fixed-location-1.0.0"
+      - type: $ref: ".moving-location-1.0.0"
+  meta:
+    description: |
+      holder of all metadata that is not part of the standard properties
+    type: object
+additionalProperties: true

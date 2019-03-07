@@ -1,0 +1,73 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/fixed_location-1.0.0"
+title: |
+  Telescope location information for telescopes on fixed ground.
+
+description: |
+  This schema contains the attributes defining the location 
+  of the telescope used when ground-based. May be on other solar system 
+  objects.
+
+tag: "tag:stsci.edu/datamodels/fixed_location-1.0.0"
+type: object
+properties:
+  solar_system_body: 
+    description: |
+      Identifies which body the ground coordinates are referenced to, currently 
+      only solid bodies are included. Only moons with a radius greater than 
+      100 km are included. Only asteroids with a radius larger than 500 km are
+      included. Comets are excluded. [Perhaps this list is going overboard :-)]
+    type: string
+    enum:
+      - Earth
+      - Moon
+      - Mercury
+      - Venus
+      - Mars
+      - Io
+      - Europa
+      - Ganymede
+      - Callisto
+      - Mimas
+      - Enceladus
+      - Tethys
+      - Dione
+      - Rhea
+      - Titan
+      - Hyperion
+      - Iapetus
+      - Phoebe
+      - Ariel
+      - Umbriel
+      - Titania
+      - Oberon
+      - Miranda
+      - Triton
+      - Nereid
+      - Proteus
+      - Charon
+      - Vesta
+      - Ceres
+      - Pallas
+      - Hygiea
+  latitude:
+    description: |
+      latitude in degrees      
+    type: number
+  longitude:
+    description: |
+      longitude in degrees
+    type: number
+  altitude:
+    description: |
+       Altitude from mean radius in km
+    type: number
+  meta:
+    description: |
+      Container of any nonstandard information
+    type: string
+  additionalProperties: True
+  required: [solar_system_body, latitude, longitude, altitude]
+  

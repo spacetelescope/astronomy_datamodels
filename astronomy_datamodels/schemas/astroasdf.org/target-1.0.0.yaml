@@ -1,0 +1,46 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/target-1.0.0"
+title: |
+  Information on the target
+
+description: |
+  This is the basic target object, and contains relevant Information
+  on it.
+
+tag: "tag:stsci.edu/datamodels/target-1.0.0"
+type: object
+properties:
+  id:
+    description: |
+      The standard string designation for the target
+    type: string
+  name:
+    description: |
+      More descriptive name for target
+    type: string
+  alias:
+    description: |
+      Other names for target
+    type: array
+    items: [string]
+  coordinates:
+    description: |
+      Coordinates of the target
+    oneOf:
+      - tag:astropy.org/astropy/coordinates/frames/cirs-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/fk4-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/fk4noeterms-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/fk5-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/galactic-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/galactocentric-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/gcrs-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/icrs-1.1.0
+      - tag:astropy.org/astropy/coordinates/frames/itrs-1.0.0
+      - tag:astropy.org/astropy/coordinates/frames/precessedgeocentric-1.0.0
+  meta:
+    description: |
+      Container for any nonstandard information
+    type: string
+  required: [id, coordinates]

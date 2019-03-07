@@ -1,0 +1,36 @@
+%YAML 1.1
+---
+$schema: "http://astromd.org/schemas/yaml-schema/draft-01"
+id: "http://astromd.org/schemas/astronomy/datamodels/observer-1.0.0"
+title: |
+  Observer information.
+
+description: |
+  This contains information about an individual observer.
+
+tag: "tag:astromd.org/datamodels/observer-1.0.0"
+type: object
+properties:
+  name:
+    description: |
+      Full name of the observer
+    type: string
+  institution:
+    description: |
+      The institution they represent
+    type: string
+  address:
+    description: |
+      The mailing address for the observer.
+    type: string
+  email:
+    description: |
+      The email address for the observer.
+  PI:
+    description: |
+      Is the observer a PI?
+    type: boolean
+  meta:
+    description: |
+      A container for any non-standard information.
+  required: [name]

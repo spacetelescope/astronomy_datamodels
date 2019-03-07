@@ -1,0 +1,56 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/detector2d_generic-1.0.0"
+title: |
+  Information about the instrument used 
+
+description: |
+  This contains information about the detector used and the
+  configuration used for the observation. This type is for all detectors
+  that don't fall into other standard types.
+
+tag: "tag:stsci.edu/datamodels/detector2d_generic-1.0.0"
+type: object
+properties:
+  name:
+    description: |
+      Standard name for the detector (nominally should match the key used
+      in the instruments detectors property).
+    type: string
+  generic_description:
+    description: |
+      String to describe the detector type
+  size:
+    description: |
+      number of pixels in each dimension of the full detector used for
+      science data.
+    type: array
+    items: [number, number]
+  binning:
+    description: |
+      The binning, if any used for these data
+    type: array
+    items: [number, number]
+  subarray:
+    description:
+      The subset of the detector used. If multiple subarrays are possible,
+      they should result in multiple detector entries???? Hmmm, can't have
+      multiple identical keys, so the detector name probably needs modification
+      with a subarray-ID suffix.
+    type: object
+      properties:
+        offset:
+          description: |
+            Offset of the start 
+            of the subarray.
+          type: array
+          items: [number, number]
+        size:
+          description: |
+            Size of the subarray
+          type: array
+          items: [number, number]
+  meta:
+    description: |
+      A container for non standard information about the detector.

@@ -1,0 +1,66 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://stsci.edu/schemas/astronomy/datamodels/instrument-1.0.0"
+title: |
+  Information about the instrument used 
+
+description: |
+  This contains information about the  instrument used and the
+  configuration used for the observation
+
+tag: "tag:stsci.edu/datamodels/instrument-1.0.0"
+type: object
+properties:
+  name:
+    description: |
+      The name of the instrument
+    type: string
+  instrument_type:
+     description: |
+       A list of relevant observational types such as imager, 
+       spectrograph, IFU, multiple_object, etc [need to standardize
+       terms]
+     type: array
+     items: [string]
+  filters:
+    description: |
+      A list of the filters used
+    type: array
+    items: [string]
+  disperser:
+    description: |
+      The disperser used for spectrographic observations
+    type: string
+  spectral_range:
+    description: |
+      The range of the spectrum for which the filters & detectors
+      have any reasonable bet sensitivity. E.g., going beyond this
+      range has no useful data.
+    type: array
+    items [$ref: "tag:astropy.org"]
+  mode:
+    description: |
+      The instrument mode used for this observation [this should eventually
+      accept an object with schemas for specific instruments]
+    type: string
+  detectors:
+    description: |
+      Information about the detectors used
+    type: object
+    properties:
+      additionalProperties:
+        oneOf:
+          - $ref: ".detector2d-ccd"
+          - $ref: ".detector2d-irarray"
+          - $ref: ".detector2d-generic"
+  engineering:
+    description: |
+      Container for engineering data. No standarization about the contents
+    type: object
+  meta:
+    description: |
+      Container for nonstandard information about the instrument.
+    type: object
+  required: [name, instrument_type, filters, mode, detectors]
+  
