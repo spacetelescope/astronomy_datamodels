@@ -16,10 +16,10 @@ conf = ConfigParser()
 conf.read(['setup.cfg'])
 metadata = dict(conf.items('metadata'))
 
-PACKAGENAME = metadata.get('package_name', 'asdf_astronomy_schemas')
-DESCRIPTION = metadata.get('description', 'asdf astronomy schemas')
+PACKAGENAME = metadata.get('package_name', 'astronomy_datamodels')
+DESCRIPTION = metadata.get('description', 'Python-based astronomy datamodels')
 AUTHOR = metadata.get('author', 'STScI')
-AUTHOR_EMAIL = metadata.get('author_email', '')
+AUTHOR_EMAIL = metadata.get('author_email', 'perry@stsci.edu')
 LICENSE = metadata.get('license', 'unknown')
 URL = metadata.get('url', ' http://stsci.edu/schemas')
 __minimum_python_version__ = metadata.get("minimum_python_version", "3.6")
@@ -27,7 +27,7 @@ __minimum_python_version__ = metadata.get("minimum_python_version", "3.6")
 # Enforce Python version check - this is the same check as in __init__.py but
 # this one has to happen before importing ah_bootstrap.
 if sys.version_info < tuple((int(val) for val in __minimum_python_version__.split('.'))):
-    sys.stderr.write("ERROR: asdf_astronomy_schemas requires Python {} or later\n".format(__minimum_python_version__))
+    sys.stderr.write("ERROR: astronomy_datamodels requires Python {} or later\n".format(__minimum_python_version__))
     sys.exit(1)
 
 # Import ah_bootstrap after the python version validation
@@ -107,8 +107,7 @@ package_info['package_data'][PACKAGENAME].append('data/*')
 # Define entry points for command-line scripts
 entry_points = {}
 entry_points['asdf_extensions'] = [
-    'astronomy_datamodels = asdf_astronomy_schemas_python.datamodels.extension:AstronomyDataModelExtension',
-    'astronomy_datamodels_asdf = asdf_astronomy_schemas_python.datamodels.extension:AstronomyDataModelAsdfExtension'
+    'astronomy_datamodels = astronomy_datamodels.extension:AstronomyDataModelExtension',
     ]
 
 

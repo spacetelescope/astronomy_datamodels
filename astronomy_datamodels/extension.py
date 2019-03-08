@@ -25,20 +25,20 @@ from asdf.util import filepath_to_url
 # from .tags.transform.tabular import *
 # from .tags.unit.quantity import *
 # from .tags.unit.unit import *
-from ..tags.observer import *
-from ..types import _astronomy_datamodel_types, _astronomy_datamodel_asdf_types
+from .tags.observer import *
+from .types import _astronomy_datamodel_types, _astronomy_datamodel_asdf_types
 
 
 __all__ = ['AstronomyDataModelExtension', 'AstronomyDataModelAsdfExtension']
 
 
-ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE = 'http://astrodm.org/schemas/'
+ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE = 'http://astroasdf.org/schemas/'
 SCHEMA_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), 'schemas'))
 ASTRONOMY_DATAMODEL_URL_MAPPING = [
     (ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE,
      filepath_to_url(
-         os.path.join(SCHEMA_PATH, 'astrodm.org')) +
+         os.path.join(SCHEMA_PATH, 'astroasdf.org')) +
          '/{url_suffix}.yaml')]
 
 

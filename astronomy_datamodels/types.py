@@ -37,7 +37,7 @@ class AstronomyDataModelType(CustomType, metaclass=AstronomyDataModelTypeMeta):
     IMPORTANT: This parent class should **not** be used for types that have
     schemas that are defined by the ASDF standard.
     """
-    organization = 'stsci.edu'
+    organization = 'astroasdf.org'
     standard = 'astronomy_datamodel'
 
 

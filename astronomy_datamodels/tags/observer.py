@@ -1,14 +1,14 @@
 from asdf import yamlutil
 from asdf.versioning import AsdfSpec
 from ..types import AstronomyDataModelType
-from ..datamodels import Observer
+from ..observer import Observer
 
 
 class ObserverType(AstronomyDataModelType):
     name = 'datamodel/observer'
     version = '1.0.0'
     supported_versions = ['1.0.0', AsdfSpec('>=1.1.0')]
-    types = ['asdf_astronomy_schemas_python.datamodels.Observer']
+    types = ['astronomy_datamodels.observer.Observer']
     requires = []
 
     @classmethod
