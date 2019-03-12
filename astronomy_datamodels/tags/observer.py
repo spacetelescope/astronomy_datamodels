@@ -33,6 +33,14 @@ class ObserverType(AstronomyDataModelType):
         obs = Observer(name)
         if 'email' in node:
             obs.email = node['email']
+        if 'address' in node:
+            obs.address = node['address']
+        if 'institution' in node:
+            obs.institution = node['institution'] 
+        if 'PI' in node:
+            obs.isPI = node['PI']
+        if 'meta' in node:
+            obs.meta = node['meta']
         return obs
 
     @classmethod

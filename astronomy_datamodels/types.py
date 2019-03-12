@@ -21,7 +21,6 @@ class AstronomyDataModelTypeMeta(ExtensionTypeMeta):
         # Classes using this metaclass are automatically added to the list of
         # astropy extensions
         if cls.standard == 'astronomy_datamodel':
-            print('adding ', cls.__name__)
             _astronomy_datamodel_types.add(cls)
         elif cls.standard == 'asdf':
             _astronomy_datamodel_asdf_types.add(cls)

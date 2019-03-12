@@ -32,14 +32,14 @@ from .types import _astronomy_datamodel_types, _astronomy_datamodel_asdf_types
 __all__ = ['AstronomyDataModelExtension', 'AstronomyDataModelAsdfExtension']
 
 
-ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE = 'http://astroasdf.org/schemas/'
+ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE = 'http://astroasdf.org/astronomy_datamodel/'
 SCHEMA_PATH = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), 'schemas'))
+    os.path.join(os.path.dirname(__file__), 'asdf_astronomy_schemas/schemas'))
 ASTRONOMY_DATAMODEL_URL_MAPPING = [
     (ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE,
      filepath_to_url(
-         os.path.join(SCHEMA_PATH, 'astroasdf.org')) +
-         '/{url_suffix}.yaml')]
+         os.path.join(SCHEMA_PATH, '../schemas/astroasdf.org')) +
+         '{url_suffix}.yaml')]
 
 
 # This extension is used to register custom types that have both tags and
@@ -51,8 +51,8 @@ class AstronomyDataModelExtension(AsdfExtension):
 
     @property
     def tag_mapping(self):
-        return [('tag:astrodm.org:custom',
-                 ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE + 'custom{tag_suffix}')]
+        return [('tag:astroasdf.org:astronomy_datamodel',
+                 ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE + '{tag_suffix}')]
 
     @property
     def url_mapping(self):

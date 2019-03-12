@@ -1,0 +1,3 @@
+[submodule "asdf_astronomy_schemas"]
+	path = asdf_astronomy_schemas
+	url = https://github.com/spacetelescope/asdf_astronomy_schemas
