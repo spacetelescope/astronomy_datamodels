@@ -22,7 +22,7 @@ class ObserverType(AstronomyDataModelType):
         if node.email is not None:
             d['email'] = node.email
         if node.isPI is not None:
-            d['PI'] = node.PI
+            d['PI'] = node.isPI
         if node.meta is not None:
             d['meta'] = node.meta
         return d
