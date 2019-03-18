@@ -1,14 +1,14 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/observer-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/observer-1.0.0"
 title: |
   Observer information.
 
 description: |
   This contains information about an individual observer.
 
-tag: "tag:astromd.org/datamodels/observer-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/observer-1.0.0"
 type: object
 properties:
   name:
@@ -33,4 +33,5 @@ properties:
   meta:
     description: |
       A container for any non-standard information.
-  required: [name]
+    type: object
+required: [name]

@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from asdf.asdftypes import CustomType, ExtensionTypeMeta
+from asdf.types import CustomType, ExtensionTypeMeta
 
 
 __all__ = ['AstronomyDataModelType', 'AstronomyDataModelAsdfType']
@@ -38,6 +38,7 @@ class AstronomyDataModelType(CustomType, metaclass=AstronomyDataModelTypeMeta):
     """
     organization = 'astroasdf.org'
     standard = 'astronomy_datamodel'
+    version = '1.0.0'
 
 
 class AstronomyDataModelAsdfType(CustomType, metaclass=AstronomyDataModelTypeMeta):

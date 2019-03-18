@@ -1,25 +1,28 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/proposal-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/proposal-1.0.0"
 title: |
   Spectrum data.
 
 description: |
   This contains information about the proposal associated with the observation
 
-tag: "tag:astroasdf.org/datamodels/proposal-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/proposal-1.0.0"
 type: object
 properties:
   proposal_id:
     description: |
       The standard id for the proposal in whatever scheme the institution uses
-    type: string
+    anyOf:
+      - type: string
+      - type: integer
   proposers:
     description: |
       The set of proposers
     type: array
-    items: [$ref: ".observer-1.0.0"]
+    items: 
+      {$ref: "observer-1.0.0"}
   proposal_title:
     description: |
       The official title of the proposal
@@ -27,3 +30,6 @@ properties:
   meta:
     description: |
       Container for any non-standard information about the propopsal
+    type: object
+    default: {}
+required: [proposal_id]

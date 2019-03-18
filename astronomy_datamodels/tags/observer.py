@@ -7,7 +7,7 @@ from ..observer import Observer
 class ObserverType(AstronomyDataModelType):
     name = 'datamodel/observer'
     version = '1.0.0'
-    supported_versions = ['1.0.0', AsdfSpec('>=1.1.0')]
+    supported_versions = ['1.0.0']
     types = ['astronomy_datamodels.observer.Observer']
     requires = []
 
@@ -24,7 +24,7 @@ class ObserverType(AstronomyDataModelType):
         if node.isPI is not None:
             d['PI'] = node.isPI
         if node.meta is not None:
-            d['meta'] = node.meta
+            d['meta'] = yamlutil.custom_tree_to_tagged_tree(node.meta, ctx)
         return d
 
     @classmethod
