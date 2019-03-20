@@ -39,9 +39,9 @@ SCHEMA_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), 'asdf_astronomy_schemas/schemas'))
 ASTRONOMY_DATAMODEL_URL_MAPPING = [
     (ASTRONOMY_DATAMODEL_SCHEMA_URI_BASE,
-     filepath_to_url(
-         os.path.join(SCHEMA_PATH, '../schemas/astroasdf.org')) +
-         '{url_suffix}.yaml')]
+     os.path.join(filepath_to_url(
+         os.path.join(SCHEMA_PATH, 'astroasdf.org')),
+         '{url_suffix}.yaml'))]
 
 
 # This extension is used to register custom types that have both tags and

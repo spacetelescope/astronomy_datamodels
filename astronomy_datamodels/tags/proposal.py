@@ -20,7 +20,7 @@ class ProposalType(AstronomyDataModelType):
         if node.title is not None:
             d['proposal_title'] = node.title
         if node.meta is not None:
-            d['meta'] = yamlutil.custom_tree_to_tagged_tree(node.meta. ctx)
+            d['meta'] = yamlutil.custom_tree_to_tagged_tree(node.meta, ctx)
         return d
 
     @classmethod
@@ -32,7 +32,7 @@ class ProposalType(AstronomyDataModelType):
         if 'proposal_title' in node:
             prop.title = node['proposal_title']
         if 'meta' in node:
-            prop.meta = yamlutil.tagged_tree_to_custom_tree(node['meta'])
+            prop.meta = yamlutil.tagged_tree_to_custom_tree(node['meta'], ctx)
         return prop
 
     @classmethod
