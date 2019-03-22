@@ -1,3 +1,5 @@
+# Licensed under a 3-clause BSD style license - see LICENSE.rst
+# -*- coding: utf-8 -*-
 from asdf import yamlutil
 from asdf.versioning import AsdfSpec
 from ..types import AstronomyDataModelType
