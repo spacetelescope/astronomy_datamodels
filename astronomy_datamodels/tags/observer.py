@@ -40,7 +40,7 @@ class ObserverType(AstronomyDataModelType):
         if 'PI' in node:
             obs.isPI = node['PI']
         if 'meta' in node:
-            obs.meta = node['meta']
+            obs.meta = yamlutil.tagged_tree_to_custom_tree(node['meta'], ctx)
         return obs
 
     @classmethod
