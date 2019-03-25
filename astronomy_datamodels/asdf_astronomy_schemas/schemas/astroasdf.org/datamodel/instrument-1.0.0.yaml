@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/instrument-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/instrument-1.0.0"
 title: |
   Information about the instrument used 
 
@@ -9,7 +9,7 @@ description: |
   This contains information about the  instrument used and the
   configuration used for the observation
 
-tag: "tag:astroasdf.org/datamodels/instrument-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/instrument-1.0.0"
 type: object
 properties:
   name:
@@ -17,17 +17,17 @@ properties:
       The name of the instrument
     type: string
   instrument_type:
-     description: |
-       A list of relevant observational types such as imager, 
-       spectrograph, IFU, multiple_object, etc [need to standardize
-       terms]
-     type: array
-     items: [string]
+    description: |
+      A list of relevant observational types such as imager, 
+      spectrograph, IFU, multiple_object, etc (need to standardize
+      terms)
+    type: string
   filters:
     description: |
       A list of the filters used
     type: array
-    items: [string]
+    items: 
+      type: string
   disperser:
     description: |
       The disperser used for spectrographic observations
@@ -35,32 +35,34 @@ properties:
   spectral_range:
     description: |
       The range of the spectrum for which the filters & detectors
-      have any reasonable bet sensitivity. E.g., going beyond this
+      have any reasonable sensitivity. E.g., going beyond this
       range has no useful data.
     type: array
-    items [$ref: "tag:astropy.org"]
+    items:
+      - $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
+      - $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
   mode:
     description: |
-      The instrument mode used for this observation [this should eventually
-      accept an object with schemas for specific instruments]
+      The instrument mode used for this observation (this should eventually
+      accept an object with schemas for specific instruments)
     type: string
   detectors:
     description: |
       Information about the detectors used
-    type: object
-    properties:
-      additionalProperties:
-        oneOf:
-          - $ref: ".detector2d-ccd"
-          - $ref: ".detector2d-irarray"
-          - $ref: ".detector2d-generic"
+    type: array
+    items:
+      $ref: "detector2d_ccd-1.0.0"
+          #- $ref: ".detector2d-irarray"
+          #- $ref: ".detector2d-generic"
   engineering:
     description: |
       Container for engineering data. No standarization about the contents
     type: object
+    default: {}
   meta:
     description: |
       Container for nonstandard information about the instrument.
     type: object
-  required: [name, instrument_type, filters, mode, detectors]
+    default: {}
+required: [name, instrument_type, filters, mode, detectors]
   

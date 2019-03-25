@@ -12,20 +12,7 @@ from asdf.util import filepath_to_url
 # could do this using __init__ files, except it causes pytest import errors in
 # the case that asdf is not installed.
 
-# from .tags.coordinates.angle import *
-# from .tags.coordinates.representation import *
-# from .tags.coordinates.frames import *
-# from .tags.fits.fits import *
-# from .tags.table.table import *
-# from .tags.time.time import *
-# from .tags.transform.basic import *
-# from .tags.transform.compound import *
-# from .tags.transform.polynomial import *
-# from .tags.transform.projections import *
-# from .tags.transform.tabular import *
-# from .tags.unit.quantity import *
-# from .tags.unit.unit import *
-# from .tags.meta import *
+from .tags.instrument import *
 from .tags.detector2d_ccd import *
 from .tags.subarray import *
 from .tags.proposal import *

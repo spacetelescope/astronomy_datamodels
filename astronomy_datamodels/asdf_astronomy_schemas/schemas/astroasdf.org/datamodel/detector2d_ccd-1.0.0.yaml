@@ -9,7 +9,7 @@ description: |
   This contains information about the ccd used and the
   configuration used for the observation
 
-tag: "tag:astroasdf.org/astronomy_datamodel/datamodel/detector2d_ccd-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/detector2d_ccd-1.0.0"
 type: object
 properties:
   name:
@@ -33,10 +33,9 @@ properties:
       - type: integer
       - type: integer
   subarray:
-    type: $ref: ".subarray-1.0.0"
+    $ref: "subarray-1.0.0"
   meta:
     description: |
       A container for non standard information about the detector.
     type: object
-    default: {}
-  required: [name, size]
+required: [name, size]
