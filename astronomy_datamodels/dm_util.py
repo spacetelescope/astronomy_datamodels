@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 def check_int_sequence(arg, length=None):
+    if arg is None:
+        return
     if length is not None:
         if len(arg) != length:
             raise ValueError("Must be a sequence of length {}".format(length))
@@ -10,6 +12,8 @@ def check_int_sequence(arg, length=None):
             raise ValueError("Sequence must contain only integers")
 
 def check_sequence_type(arg, stype, length=None):
+    if arg is None:
+        return
     if length is not None:
         if len(arg) != length:
             raise ValueError("Must be a sequence of length {}".format(length))

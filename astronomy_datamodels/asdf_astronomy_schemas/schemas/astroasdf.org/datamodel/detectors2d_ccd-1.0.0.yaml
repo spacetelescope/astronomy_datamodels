@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/detector2d_ccd-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/detector2d_ccd-1.0.0"
 title: |
   Information about the instrument used 
 
@@ -9,7 +9,7 @@ description: |
   This contains information about the ccd used and the
   configuration used for the observation
 
-tag: "tag:astroasdf.org/datamodels/detector2d_ccd-1.0.0"
+tag: "tag:astroasdf.org/astronomy_datamodel/datamodel/detector2d_ccd-1.0.0"
 type: object
 properties:
   name:
@@ -22,31 +22,21 @@ properties:
       number of pixels in each dimension of the full detector used for
       science data.
     type: array
-    items: [number, number]
+    items:
+      - type: integer
+      - type: integer
   binning:
     description: |
       The binning, if any used for these data
     type: array
-    items: [number, number]
+    items:
+      - type: integer
+      - type: integer
   subarray:
-    description:
-      The subset of the detector used. If multiple subarrays are possible,
-      they should result in multiple detector entries???? Hmmm, can't have
-      multiple identical keys, so the detector name probably needs modification
-      with a subarray-ID suffix.
-    type: object
-      properties:
-        offset:
-          description: |
-            Offset of the start 
-            of the subarray.
-          type: array
-          items: [number, number]
-        size:
-          description: |
-            Size of the subarray
-          type: array
-          items: [number, number]
+    type: $ref: ".subarray-1.0.0"
   meta:
     description: |
       A container for non standard information about the detector.
+    type: object
+    default: {}
+  required: [name, size]

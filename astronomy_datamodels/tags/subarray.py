@@ -18,7 +18,7 @@ class SubarrayType(AstronomyDataModelType):
         d['offset'] = node.offset
         d['size'] = node.size
         if node.name is not None:
-            d['proposers'] = node.name
+            d['name'] = node.name
         return d
 
     @classmethod

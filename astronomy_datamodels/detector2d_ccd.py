@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 # -*- coding: utf-8 -*-
 
-from dm_util import check_sequence_type
+from .dm_util import check_sequence_type
 from .subarray import Subarray
 
 class Detector2dCCD:
@@ -9,15 +9,10 @@ class Detector2dCCD:
     def __init__(self, name, size, binning=None, subarray=None,
                  meta=None):
         self.name = name
-        check_sequence_type(size, stype=int, length=2)
         self.size = size
-        if binning is not None:
-            check_sequence_type(binning, stype=int, length=2)
         self.binning = binning
-        if subarray is not None:
-            self.subarray = subarray
-        if meta is not None:
-            self.meta = meta
+        self.subarray = subarray
+        self.meta = meta
 
     @property
     def name(self):
@@ -28,6 +23,15 @@ class Detector2dCCD:
         if not isinstance(value, str):
             raise ValueError("Name must be a string")
         self._name = value
+
+    @property
+    def size(self):
+        return self._size
+
+    @size.setter
+    def size(self, value):
+        check_sequence_type(value, stype=int, length=2)
+        self._size = value
 
     @property
     def binning(self):
@@ -44,7 +48,9 @@ class Detector2dCCD:
     
     @subarray.setter
     def subarray(self, value):
-        if not isinstance(value, Subarray)
+        if value is not None and not isinstance(value, Subarray):
+            raise ValueError('subarray must be a Subarray instance')
+        self._subarray = value
 
     @property
     def meta(self):

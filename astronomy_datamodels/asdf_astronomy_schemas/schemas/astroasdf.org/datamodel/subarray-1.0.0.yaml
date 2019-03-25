@@ -1,0 +1,33 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/subarray-1.0.0"
+title: |
+  Subarray information.
+
+description: |
+  This defines the subarray region of a detector used for an observation
+
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/subarray-1.0.0"
+type: object
+properties:
+  name:
+    description: |
+      The name of the subarray, if any
+    type: string
+  offset:
+    description: |
+      Offset of the start 
+      of the subarray.
+    type: array
+    items: 
+      - type: integer 
+      - type: integer
+  size:
+    description: |
+      Size of the subarray
+    type: array
+    items: 
+      - type: integer
+      - type: integer
+required: [offset, size]

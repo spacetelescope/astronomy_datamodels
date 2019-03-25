@@ -26,6 +26,7 @@ from asdf.util import filepath_to_url
 # from .tags.unit.quantity import *
 # from .tags.unit.unit import *
 # from .tags.meta import *
+from .tags.detector2d_ccd import *
 from .tags.subarray import *
 from .tags.proposal import *
 from .tags.observer import *
