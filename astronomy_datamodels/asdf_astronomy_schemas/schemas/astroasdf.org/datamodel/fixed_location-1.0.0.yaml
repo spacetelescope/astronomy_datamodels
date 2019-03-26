@@ -1,7 +1,7 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/fixed_location-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/fixed_location-1.0.0"
 title: |
   Telescope location information for telescopes on fixed ground.
 
@@ -10,7 +10,7 @@ description: |
   of the telescope used when ground-based. May be on other solar system 
   objects.
 
-tag: "tag:astroasdf.org/datamodels/fixed_location-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/fixed_location-1.0.0"
 type: object
 properties:
   solar_system_body: 
@@ -54,20 +54,19 @@ properties:
       - Hygiea
   latitude:
     description: |
-      latitude in degrees      
-    type: number
+      latitude      
+    $ref: "tag:astropy.org:astropy/coordinates/angle-1.0.0"
   longitude:
     description: |
-      longitude in degrees
-    type: number
+      longitude
+    $ref: "tag:astropy.org:astropy/coordinates/angle-1.0.0"
   altitude:
     description: |
-       Altitude from mean radius in km
-    type: number
+       Altitude from mean radius
+    $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
   meta:
     description: |
       Container of any nonstandard information
-    type: string
-  additionalProperties: True
-  required: [solar_system_body, latitude, longitude, altitude]
+    type: object
+required: [solar_system_body, latitude, longitude]
   
