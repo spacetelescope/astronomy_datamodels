@@ -1,14 +1,14 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/telescope-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/telescope-1.0.0"
 title: |
   Telescope description.
 
 description: |
   This schema contains the attributes describing the telescope used.
 
-tag: "tag:astroasdf.org/datamodels/telescope-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/telescope-1.0.0"
 type: object
 properties:
   name:
@@ -31,12 +31,12 @@ properties:
     description: |
       one or more standard terms for the kind of telescope (usually wavelength range)
     type: array
-    items:
+    items: 
       type: string
       enum:
         - Radio
         - Microwave
-        - Millimeter-Wave
+        - Millimeter
         - IR
         - Visible
         - UV
@@ -57,11 +57,11 @@ properties:
       for spacecraft, it may contain a model object of some sort that provides location
       as a function of time in a standard coordinate system; or a cartesian coordinate
       in a defined solar system coordinate system.
-    oneOf:
-      - type: $ref: ".fixed-location-1.0.0"
-      - type: $ref: ".moving-location-1.0.0"
+    anyOf:
+      - $ref: "fixed_location-1.0.0"
+      #- type: $ref: ".moving-location-1.0.0"
   meta:
     description: |
       holder of all metadata that is not part of the standard properties
     type: object
-additionalProperties: true
+required: [name, location]

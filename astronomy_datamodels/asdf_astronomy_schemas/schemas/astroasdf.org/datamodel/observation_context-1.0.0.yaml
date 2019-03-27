@@ -36,5 +36,4 @@ properties:
   associated_data:
     description: |
       General container for any data that is associated with the data
-    $ref: ".associated_data-1.0.0"
-  additionalProperties: true
+    type: object
