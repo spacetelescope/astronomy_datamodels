@@ -12,6 +12,7 @@ from asdf.util import filepath_to_url
 # could do this using __init__ files, except it causes pytest import errors in
 # the case that asdf is not installed.
 
+from .tags.wcs_set import *
 from .tags.obs_context import *
 from .tags.telescope import *
 from .tags.fixed_location import *

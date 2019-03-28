@@ -1,19 +1,20 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/wcs_set-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/wcs_set-1.0.0"
 title: |
   Collection of WCS objects
 
 description: |
   This references one or more WCS objects.
 
-tag: "tag:astroasdf.org/datamodels/wcs_set-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/wcs_set-1.0.0"
 type: object
 properties:
   default:
     description: |
       The default WCS to use, and the only required WCS object.
-    $ref: tag:stsci.edu/gwcs
-  additionalProperties: $ref: tag:stsci.edu/gwcs
-  required [default]
+    $ref: tag:stsci.edu:gwcs/wcs-1.0.0
+  additionalProperties: 
+    $ref: tag:stsci.edu:gwcs/wcs-1.0.0
+required: [default]
