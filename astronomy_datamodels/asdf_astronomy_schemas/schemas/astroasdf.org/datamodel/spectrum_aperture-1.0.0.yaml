@@ -1,28 +1,37 @@
 %YAML 1.1
 ---
 $schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "http://astroasdf.org/schemas/astronomy/datamodels/spectrum-aperture-1.0.0"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/spectrum_aperture-1.0.0"
 title: |
-  Spectrum data.
+  Spectrum slit aperture information.
 
 description: |
   This contains information about the aperture used for the spectrum
 
-tag: "tag:astroasdf.org/datamodels/spectrum-aperture-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/spectrum_aperture-1.0.0"
 type: object
-properties
+properties:
   center:
     description: |
       The location of the aperture center in slit plane coordinates corresponding
       to the frame used for the slit plane in the WCS.
     type: array
-    items: [number, number]
+    items:
+      - type: number
+      - type: number
   footprint:
     description: |
       The outline of the aperture in slit plane coordinates. Stored as a 2xn array
       where n is the number of points in a polygon outlining the aperture.
-    $ref: tag:stsci.edu/core/nd-array-1.0.0
+    $ref: "tag:stsci.edu:asdf/core/ndarray-1.0.0"
   aperture_id:
     description: |
       The id used to identify this slit.
-  required: [center, footprint, aperture_id]
+    anyOf:
+      - type: string
+      - type: integer
+  meta:
+    description: |
+      A container for nonstandard information about the aperture
+    type: object
+required: [center, footprint, aperture_id]
