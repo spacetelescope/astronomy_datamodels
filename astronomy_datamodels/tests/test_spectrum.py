@@ -24,42 +24,45 @@ from ..obs_context import ObsContext
 from ..telescope import Telescope
 from ..spectrum import Spectrum
 from ..wcs_set import WcsSet
+from .test_obs_context import test1 as oc_test1
+
 import numpy as np
 
 def test1(tmpdir):
-    obs_buddy = Observer('Marvin')
-    obs1 = Observer(name='Dummy Name Jr.',
-                   institution='Harvaard',
-                   address='Harvard Square, Cambridge, MA 02121',
-                   email='dname@harvaard.edu',
-                   PI=True,
-                   meta={'drink_of_choice': 'hemlock',
-                         'students': ['Peter', 'Paul', 'Mary'],
-                         'observer_buddy': obs_buddy
-                         })
-    obs2 = Observer(name='Bozo the Clown')
-    prop = Proposal(327, proposers=[obs1, obs2])
-    coord = coords.FK5(ra=14*u.deg, dec=-7.5*u.deg)
-    target = Target(id='NGC 7356', coordinates=coord, name="my future Nobel target",
-            aliases=['black hole catalog 7', "Darth Vader's home"],
-            meta={'secret':'Top', 'coordinates':"are wrong for security purposes"})    
-    subarray = Subarray(name='SA1', offset=(100, 131), size=(100,200))
-    detector = Detector2dCCD('CCD1', size=(2048, 2048), binning=(2,2),
-                                 subarray=subarray)
-    meta = {'purpose': 'built for thesis', 'funding': 'bake sales'}
-    engineering = {'beertap': 'off', 'background_level': 'heavy metal rock'}
-    instrument = Instrument(name='The Big Eye', instrument_type="CAMERA",
-                             filters=['F480W'], detectors=[detector],
-                             spectral_range=[350 * u.nm, 550 * u.nm],
-                             mode='full field', meta=meta,
-                             engineering=engineering)
+    # obs_buddy = Observer('Marvin')
+    # obs1 = Observer(name='Dummy Name Jr.',
+    #                institution='Harvaard',
+    #                address='Harvard Square, Cambridge, MA 02121',
+    #                email='dname@harvaard.edu',
+    #                PI=True,
+    #                meta={'drink_of_choice': 'hemlock',
+    #                      'students': ['Peter', 'Paul', 'Mary'],
+    #                      'observer_buddy': obs_buddy
+    #                      })
+    # obs2 = Observer(name='Bozo the Clown')
+    # prop = Proposal(327, proposers=[obs1, obs2])
+    # coord = coords.FK5(ra=14*u.deg, dec=-7.5*u.deg)
+    # target = Target(id='NGC 7356', coordinates=coord, name="my future Nobel target",
+    #         aliases=['black hole catalog 7', "Darth Vader's home"],
+    #         meta={'secret':'Top', 'coordinates':"are wrong for security purposes"})    
+    # subarray = Subarray(name='SA1', offset=(100, 131), size=(100,200))
+    # detector = Detector2dCCD('CCD1', size=(2048, 2048), binning=(2,2),
+    #                              subarray=subarray)
+    # meta = {'purpose': 'built for thesis', 'funding': 'bake sales'}
+    # engineering = {'beertap': 'off', 'background_level': 'heavy metal rock'}
+    # instrument = Instrument(name='The Big Eye', instrument_type="CAMERA",
+    #                          filters=['F480W'], detectors=[detector],
+    #                          spectral_range=[350 * u.nm, 550 * u.nm],
+    #                          mode='full field', meta=meta,
+    #                          engineering=engineering)
 
-    loc = FixedLocation(latitude=coords.Angle(15*u.deg), 
-                        longitude=coords.Angle(-7.5*u.deg))
-    tel = Telescope(name='VLA', location=loc)
-    obscontext = ObsContext(telescope=tel, instrument=instrument,
-                            proposal=prop, observers=[obs1, obs2],
-                            target=target, meta={'purpose':'travel'})
+    # loc = FixedLocation(latitude=coords.Angle(15*u.deg), 
+    #                     longitude=coords.Angle(-7.5*u.deg))
+    # tel = Telescope(name='VLA', location=loc)
+    # obscontext = ObsContext(telescope=tel, instrument=instrument,
+    #                         proposal=prop, observers=[obs1, obs2],
+    #                         target=target, meta={'purpose':'travel'})
+    obscontext = oc_test1(None, ret=True)
 
     center = [23.7, 15.2]
     footprint = [[23, 24.4, 24.4, 23], [10.2, 10.2, 20.2, 20.2]]

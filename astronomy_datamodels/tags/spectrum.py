@@ -18,6 +18,8 @@ class SpectrumType(AstronomyDataModelType):
         d = {}
         d['sci'] = yamlutil.custom_tree_to_tagged_tree(node.sci, ctx)
         d['wcs'] = yamlutil.custom_tree_to_tagged_tree(node.wcs, ctx)
+        if node.obsinfo is not None:
+            d['obsinfo'] = yamlutil.custom_tree_to_tagged_tree(node.obsinfo, ctx)
         if node.dq is not None:
             d['dq'] = yamlutil.custom_tree_to_tagged_tree(node.dq, ctx)
         if node.err is not None:
@@ -40,6 +42,8 @@ class SpectrumType(AstronomyDataModelType):
         sci = yamlutil.tagged_tree_to_custom_tree(node['sci'], ctx)
         wcs = yamlutil.tagged_tree_to_custom_tree(node['wcs'], ctx)
         spectrum = Spectrum(sci=sci, wcs=wcs)
+        if 'obsinfo' in node:
+            spectrum.obsinfo = yamlutil.tagged_tree_to_custom_tree(node['obsinfo'], ctx)
         if 'dq' in node:
             spectrum.dq = yamlutil.tagged_tree_to_custom_tree(node['dq'], ctx)
         if 'err' in node:

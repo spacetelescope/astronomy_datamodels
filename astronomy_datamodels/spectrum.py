@@ -5,13 +5,15 @@ import numpy as np
 from .dm_util import check_sequence_type, convert_to_array, check_quantity_array
 from astropy.units import Quantity
 from .wcs_set import WcsSet
+from .obs_context import ObsContext
 from .spectrum_aperture  import SpectrumAperture
 
 class Spectrum:
 
     def __init__(self, sci, wcs, dq=None, err=None, aperture=None,
                        target_id=None, background_corrected=None,
-                       background_apertures=None, meta=None):
+                       background_apertures=None, obsinfo=None,
+                       meta=None):
         self.sci = sci
         self.wcs = wcs
         self.dq = dq
@@ -20,6 +22,7 @@ class Spectrum:
         self.target_id = target_id
         self.background_corrected = background_corrected
         self.background_apertures = background_apertures
+        self.obsinfo = obsinfo
         self.meta = meta
 
     @property
@@ -89,7 +92,17 @@ class Spectrum:
     def background_apertures(self, value):
         check_sequence_type(value, (str, int))
         self._background_apertures = value
-        
+
+    @property
+    def obsinfo(self):
+        return self._obsinfo
+    
+    @obsinfo.setter
+    def obsinfo(self, value):
+        if value is not None and not isinstance(value, ObsContext):
+            raise ValueError("obsinfo must be a ObsContext instance")
+        self._obsinfo = value
+                    
     @property
     def meta(self):
         return self._meta
