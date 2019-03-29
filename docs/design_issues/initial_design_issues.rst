@@ -37,87 +37,91 @@ As a summary there are the object names currently defined (from top down)
 meta is an attribute of all of these (perhaps with a couple exceptions)
 
 **Mos** (multiple object spectra)
-- fields [r] (dict of name [r], data attribute path, type [string or int])
-- field_separator [r] (how to split key string into fields)
-- datasets [r] (dict of Spectrum instances)
+ - fields [r] (dict of name [r], data attribute path, type [string or int])
+ - field_separator [r] (how to split key string into fields)
+ - datasets [r] (dict of Spectrum instances)
+
 **Spectrum** (eventually should also support external data references)
-- sci [r] (Quantity instance)
-- dq (numpy array)
-- err (Quantity instance)
-- wcs [r] (WcsSet instance)
-- aperture (SpectrumAperture instance)
-- background_corrected (boolean)
-- background_apertures (list of aperture ids)
-- obsinfo (ObsContext instance; preferably all the attributes of that are attributes of Spectrum, but that isn't working yet)
+ - sci [r] (Quantity instance)
+ - dq (numpy array)
+ - err (Quantity instance)
+ - wcs [r] (WcsSet instance)
+ - aperture (SpectrumAperture instance)
+ - background_corrected (boolean)
+ - background_apertures (list of aperture ids)
+ - obsinfo (ObsContext instance; preferably all the attributes of that are attributes of Spectrum, but that isn't working yet)
 
 **ObsContext** (all attributes are optional)
-- telescope (Telescope instance)
-- instrument (Instrument instance)
-- proposal (Proposal instance)
-- observers (list of Observer instances)
-- target (Target instance)
-- associated_data (dict)
+ - telescope (Telescope instance)
+ - instrument (Instrument instance)
+ - proposal (Proposal instance)
+ - observers (list of Observer instances)
+ - target (Target instance)
+ - associated_data (dict)
 
 **SpectrumAperture** (definition of aperture shape in the slit plane)
-- center [r] (in slit plane, presumably in the same system that the GWCS defines)
-- footprint [r] (array of vertices)
-- aperture_id [r] string or int
+
+ - center [r] (in slit plane, presumably in the same system that the GWCS defines)
+ - footprint [r] (array of vertices)
+ - aperture_id [r] string or int 
 
 **WcsSet** (a dict of GWCS objects; the "default" key and value are required)
 
 **Target**
-- id [r]
-- coordinates (astropy coord object) [r]
-- name
-- aliases
+ - id [r]
+ - coordinates (astropy coord object) [r]
+ - name
+ - aliases
 
 **Telescope**
-- name [r]
-- organization
-- org_url
-- telescope_url
-- telescope_type
-- location_name
-- location (Location instance, Fixed or Moving) [r]
+ - name [r]
+ - organization
+ - org_url
+ - telescope_url
+ - telescope_type
+ - location_name
+ - location (Location instance, Fixed or Moving) [r]
 
 **FixedLocation** (on a solar system body, longitude, latitude, etc)
-- solar_system_body [r] defaults to Earth
-- latitude (Angle quantity) [r]
-- longitude  (ditto)
-- altitude (quantity)
+ - solar_system_body [r] defaults to Earth
+ - latitude (Angle quantity) [r]
+ - longitude  (ditto)
+ - altitude (quantity)
 
 **MovingLocation** (not done yet, e.g., spacecraft)
 
 **Instrument**
-- name [r]
-- instrument_type [r]
-- filters (as a list) [r]
-- disperser
-- spectral_range
-- mode
-- detectors (Detector instances in a list) [probably should only allow one value...]
-- engineering (dict of enginering info)
+ - name [r]
+ - instrument_type [r]
+ - filters (as a list) [r]
+ - disperser
+ - spectral_range
+ - mode
+ - detectors (Detector instances in a list) [probably should only allow one value...]
+ - engineering (dict of enginering info)
 
 **Detector2dCCD** (I had anticipated a IR version, but so far, I don't have any particular differences in attributes to standardize for calibrated data; suggestions?)
-- name [r]
-- size (x, y) [r]
-- binning (x, y)
-- subarray Subarray instance
+ - name [r]
+ - size (x, y) [r]
+ - binning (x, y)
+ - subarray Subarray instance
 
 **Subarray** (defining a subset of the full detector)
-- size (x,y) [r]
-- offset (x,y) [r]
-- name
+ - size (x,y) [r]
+ - offset (x,y) [r]
+ - name
+
 **Proposal**
-- id [r]
-- title
-- proposers [list of observers]
+ - id [r]
+ - title
+ - proposers [list of observers]
+
 **Observer**
-- name [r]
-- institution
-- address
-- email address
-- isPI
+ - name [r]
+ - institution
+ - address
+ - email address
+ - isPI
 
 
 Is the code structure suitable?
