@@ -26,7 +26,7 @@ class WcsSetType(AstronomyDataModelType):
     def from_tree(cls, node, ctx): # from ASDF to object representation
 
         wcs_set = WcsSet(yamlutil.tagged_tree_to_custom_tree(node['default'], ctx))
-        
+        # need to fill this out!
         return wcs_set
 
     @classmethod

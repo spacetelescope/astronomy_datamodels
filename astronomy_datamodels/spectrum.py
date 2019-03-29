@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from .dm_util import check_sequence_type, convert_to_array
+from .dm_util import check_sequence_type, convert_to_array, check_quantity_array
+from astropy.units import Quantity
 from .wcs_set import WcsSet
 from .spectrum_aperture  import SpectrumAperture
 
@@ -27,7 +28,8 @@ class Spectrum:
     
     @sci.setter
     def sci(self, value):
-        self._sci = convert_to_array(value)
+        check_quantity_array(value)
+        self._sci = value
 
     @property
     def wcs(self):
@@ -56,7 +58,7 @@ class Spectrum:
     @err.setter
     def err(self, value):
         if value is not None:
-            value = convert_to_array(value)
+            check_quantity_array(value)
         self._err = value
         
     @property

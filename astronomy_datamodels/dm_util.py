@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
+import astropy.units as u
 
 def check_int_sequence(arg, length=None):
     if arg is None:
@@ -39,3 +40,9 @@ def convert_to_array(value, dtype=None):
         raise ValueError("supplied value must be convertable to numpy array")
 
     return value
+
+def check_quantity_array(value, unit=None, equivalency=None):
+    if not isinstance(value, u.Quantity):
+        raise ValueError("Value must be a Quantity instance")
+    if len(value.shape) == 0:
+        raise ValueError("Value must be a Quantity array")

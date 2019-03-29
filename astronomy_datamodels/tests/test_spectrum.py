@@ -10,8 +10,6 @@ from asdf.tests import helpers
 import astropy.units as u
 import astropy.coordinates as coords
 from ..spectrum_aperture import SpectrumAperture
-import astropy.units as u
-import astropy.coordinates as coords
 import gwcs
 from gwcs import coordinate_frames as cf
 from astropy.modeling import models
@@ -95,9 +93,9 @@ def test1(tmpdir):
     wcsobj = gwcs.wcs.WCS(pipeline)
     wcs_set = WcsSet(default=wcsobj, extra=wcsobj)
 
-    sci = np.ones((10,10))
+    sci = np.ones((10,10))*u.Jy
     dq = np.zeros((10,10), dtype= np.int16)
-    err = np.ones((10,10))
+    err = np.ones((10,10))*u.Jy
 
     spectrum = Spectrum(sci=sci, wcs=wcs_set,dq=dq, err=err,
                         aperture=spectrum_aperture, target_id='NGClown',

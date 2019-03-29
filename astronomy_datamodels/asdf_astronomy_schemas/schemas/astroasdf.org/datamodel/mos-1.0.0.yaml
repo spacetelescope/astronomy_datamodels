@@ -1,0 +1,66 @@
+%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "http://astroasdf.org/astronomy_datamodel/datamodel/mos-1.0.0"
+title: |
+  Standard container for Multiple Object Spectrograph data
+
+description: |
+  This is the standard container for Multiple Object Spectrograph data.
+  It is expected that the data contained have been calibrated and each
+  object extracted (in some manner) as an individual spectrum. That 
+  spectrum may have more than one spatial location (e.g., it may be
+  a single spatial point, 1d spatial data, or 2d spatial data 
+  corresponding to 1-d, 2-d and 3-d data arrays respectively).
+
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodels/mos-1.0.0"
+type: object
+properties:
+  fields:
+    description: |
+      A list of the names of fields used to identify categories of the
+      spectral data, e.g., target_id, observataion_id, aperture_id, etc.
+      In particular, the combination of the values for all the keys
+      should uniquely identify one of the data items. These values
+      are joined to form a single string used as the key value in the 
+      dictionary the data are stored in using the field_separator as 
+      the character or string separating the values. It is presumed
+      that the name corresponds to an attribute of the data object
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          description: |
+            Descriptive name for the field. Intended to be used by 
+            software as the name for selecting subsets for the values
+          type: string
+        data_attribute:
+          description: |
+            The attribute path in the data object the value is obtained from.
+          type: string
+        field_type:
+          description: |
+            A single character that indicates whether the field value 
+            is a string or an integer. This is used in converting the 
+            value obtained from the key to that used by the data if it
+            an integer instead of a string.
+          type: string
+          enum: [s, i]
+      required: [name, data_attribute, field_type]
+  field_separator:
+    description: |
+      The string or character used to join the field values to form
+      the dictionary key.
+  datasets:
+    description: |
+      The holder of all extracted spectra and associated information. 
+      All spectra are keyed by a unique key as constructed from the
+      field values as defined above. 
+    type: object
+    properties:
+    additionalProperties: 
+      $ref: "spectrum-1.0.0"
+  required: [fields, field_separator, datasets]
+  
+

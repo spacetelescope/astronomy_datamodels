@@ -15,7 +15,7 @@ properties:
   sci:
     description: |
       The science data array
-    $ref: tag:stsci.edu:asdf/core/ndarray-1.0.0
+    $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
   dq:
     description: |
       The data quality array
@@ -23,7 +23,7 @@ properties:
   err:
     description: |
       The error (uncertainty) array [I am inclined to make this more general]
-    $ref: tag:stsci.edu:asdf/core/ndarray-1.0.0
+    $ref: "tag:stsci.edu:asdf/unit/quantity-1.1.0"
   wcs:
     description: |
       This contains a set of GWCS objects indexed by key
