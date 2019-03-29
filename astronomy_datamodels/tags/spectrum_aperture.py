@@ -4,7 +4,6 @@ from asdf import yamlutil
 from asdf.versioning import AsdfSpec
 from ..types import AstronomyDataModelType
 from ..spectrum_aperture import SpectrumAperture
-import numpy as np
 
 
 class SpectrumApertureType(AstronomyDataModelType):

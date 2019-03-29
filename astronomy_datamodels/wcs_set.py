@@ -24,7 +24,7 @@ class WcsSet:
         if attr in self._others:
             return self._others[attr]
         else:
-            raise AttributeError("attribute {} not found".format(key))
+            raise AttributeError("attribute {} not found".format(attr))
 
     def __setattr__(self, attr, value):
         if not isinstance(value, gwcs.wcs.WCS):
