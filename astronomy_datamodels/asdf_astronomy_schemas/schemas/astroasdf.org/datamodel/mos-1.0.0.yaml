@@ -13,7 +13,7 @@ description: |
   a single spatial point, 1d spatial data, or 2d spatial data 
   corresponding to 1-d, 2-d and 3-d data arrays respectively).
 
-tag: "tag:astroasdf.org:astronomy_datamodel/datamodels/mos-1.0.0"
+tag: "tag:astroasdf.org:astronomy_datamodel/datamodel/mos-1.0.0"
 type: object
 properties:
   fields:
@@ -46,12 +46,15 @@ properties:
             value obtained from the key to that used by the data if it
             an integer instead of a string.
           type: string
-          enum: [s, i]
-      required: [name, data_attribute, field_type]
+          enum:
+            - s
+            - i
+      required: [name]
   field_separator:
     description: |
       The string or character used to join the field values to form
       the dictionary key.
+    type: string
   datasets:
     description: |
       The holder of all extracted spectra and associated information. 
@@ -59,8 +62,14 @@ properties:
       field values as defined above. 
     type: object
     properties:
+      dummy:
+        type: string
     additionalProperties: 
       $ref: "spectrum-1.0.0"
-  required: [fields, field_separator, datasets]
+  meta:
+    decription: |
+      General container for any associated metadata
+    type: object
+required: [fields, field_separator, datasets]
   
 
