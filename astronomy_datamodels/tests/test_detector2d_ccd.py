@@ -10,9 +10,11 @@ from asdf.tests import helpers
 
 from ..subarray import Subarray
 from ..detector2d_ccd import Detector2dCCD
+from .test_subarray import test1 as sa_test1
 
 def test1(tmpdir, ret=False):
-    subarray = Subarray(name='SA1', offset=(100, 131), size=(100,200))
+
+    subarray = sa_test1(None, ret=True)
     detector = Detector2dCCD('CCD1', size=(2048, 2048), binning=(2,2),
                              subarray=subarray)
     tree = {'detector': detector}

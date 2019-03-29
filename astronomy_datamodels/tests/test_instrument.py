@@ -11,11 +11,12 @@ import astropy.units as u
 from ..instrument import Instrument
 from ..detector2d_ccd import Detector2dCCD
 from ..subarray import Subarray
+#from .test_subarray import test1 as sa_test1
+from .test_detector2d_ccd import test1 as det_test1
 
 def test1(tmpdir, ret=False):
-    subarray = Subarray(name='SA1', offset=(100, 131), size=(100,200))
-    detector = Detector2dCCD('CCD1', size=(2048, 2048), binning=(2,2),
-                             subarray=subarray)
+
+    detector = det_test1(None, ret=True)
     detectors = [detector]
     engineering = {'beertap': 'off', 'background_level': 'heavy metal rock'}
     meta = {'purpose': 'built for thesis', 'funding': 'bake sales'}

@@ -11,17 +11,21 @@ import astropy.units as u
 import astropy.coordinates as coords
 from ..fixed_location import FixedLocation
 
-def test1(tmpdir):
+def test1(tmpdir, ret=False):
     location = FixedLocation(latitude=coords.Angle(22*u.deg), 
                              longitude=coords.Angle(-7.5*u.deg))
     tree = {'location': location}
+    if ret:
+        return location
     helpers.assert_roundtrip_tree(tree, tmpdir)
 
-def test2(tmpdir):
+def test2(tmpdir, ret=False):
     location = FixedLocation(solar_system_body='Mars',
                              latitude=coords.Angle(1*u.rad),
                              longitude=coords.Angle(-.7*u.rad),
                              altitude=500*u.m,
                              meta={'message': 'running out of food and oxygen'})
     tree = {'location': location}
+    if ret:
+        return location
     helpers.assert_roundtrip_tree(tree, tmpdir)

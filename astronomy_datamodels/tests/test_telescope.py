@@ -11,10 +11,11 @@ import astropy.units as u
 import astropy.coordinates as coords
 from ..fixed_location import FixedLocation
 from ..telescope import Telescope
+from .test_fixed_location import test1 as fl_test1
 
 def test1(tmpdir, ret=False):
-    loc = FixedLocation(latitude=coords.Angle(15*u.deg), 
-                        longitude=coords.Angle(-7.5*u.deg))
+    
+    loc = fl_test1(None, ret=True)
     tel = Telescope(name='VLA', location=loc)
     tree = {'telescope': tel}
     if ret:
@@ -22,8 +23,8 @@ def test1(tmpdir, ret=False):
     helpers.assert_roundtrip_tree(tree, tmpdir)
 
 def test2(tmpdir, ret=False):
-    loc = FixedLocation(latitude=coords.Angle(15*u.deg), 
-                        longitude=coords.Angle(-7.5*u.deg))
+
+    loc = fl_test1(None, ret=True)
     tel = Telescope(name='VLA', location=loc,
                     location_name="Plains of Saint Augustine",
                     telescope_type=['Radio'],
