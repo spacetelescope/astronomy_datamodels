@@ -9,7 +9,8 @@ from asdf import util
 from asdf.tests import helpers
 
 from  ..observer import Observer
-def test1(tmpdir):
+
+def test1(tmpdir, ret=False):
     obs = Observer(name='Dummy Name Jr.',
                    institution='Harvaard',
                    address='Harvard Square, Cambridge, MA 02121',
@@ -18,4 +19,6 @@ def test1(tmpdir):
                    meta={'drink_of_choice': 'hemlock',
                          'students': ['Peter', 'Paul', 'Mary']})
     tree = {'observer': obs}
+    if ret:
+        return obs
     helpers.assert_roundtrip_tree(tree, tmpdir)

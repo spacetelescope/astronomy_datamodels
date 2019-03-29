@@ -12,7 +12,7 @@ from ..instrument import Instrument
 from ..detector2d_ccd import Detector2dCCD
 from ..subarray import Subarray
 
-def test1(tmpdir):
+def test1(tmpdir, ret=False):
     subarray = Subarray(name='SA1', offset=(100, 131), size=(100,200))
     detector = Detector2dCCD('CCD1', size=(2048, 2048), binning=(2,2),
                              subarray=subarray)
@@ -25,4 +25,6 @@ def test1(tmpdir):
                              mode='full field', meta=meta,
                              engineering=engineering)
     tree = {'instrument': instrument}
+    if ret:
+        return instrument
     helpers.assert_roundtrip_tree(tree, tmpdir)

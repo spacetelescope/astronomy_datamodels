@@ -12,14 +12,16 @@ import astropy.coordinates as coords
 from ..fixed_location import FixedLocation
 from ..telescope import Telescope
 
-def test1(tmpdir):
+def test1(tmpdir, ret=False):
     loc = FixedLocation(latitude=coords.Angle(15*u.deg), 
                         longitude=coords.Angle(-7.5*u.deg))
     tel = Telescope(name='VLA', location=loc)
     tree = {'telescope': tel}
+    if ret:
+        return tel
     helpers.assert_roundtrip_tree(tree, tmpdir)
 
-def test2(tmpdir):
+def test2(tmpdir, ret=False):
     loc = FixedLocation(latitude=coords.Angle(15*u.deg), 
                         longitude=coords.Angle(-7.5*u.deg))
     tel = Telescope(name='VLA', location=loc,
@@ -29,4 +31,6 @@ def test2(tmpdir):
                     telescope_url='https://public.nrao.edu/telescopes/vla/',
                     meta={'fines':'hitting cows'})
     tree = {'telescope': tel}
+    if ret:
+        return tel
     helpers.assert_roundtrip_tree(tree, tmpdir)

@@ -10,7 +10,8 @@ from asdf.tests import helpers
 
 from ..observer import Observer
 from ..proposal import Proposal
-def test1(tmpdir):
+
+def test1(tmpdir, ret=False):
     obs_buddy = Observer('Marvin')
     obs1 = Observer(name='Dummy Name Jr.',
                    institution='Harvaard',

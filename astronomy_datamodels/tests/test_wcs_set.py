@@ -15,7 +15,7 @@ from astropy import coordinates as coords
 from ..wcs_set import WcsSet
 
 
-def test1(tmpdir):
+def test1(tmpdir, ret=False):
     shift_by_crpix = models.Shift(-2048*u.pix) & models.Shift(-1024*u.pix)
     matrix = np.array([[1.290551569736E-05, 5.9525007864732E-06],
                        [5.0226382102765E-06 , -1.2644844123757E-05]])
@@ -41,5 +41,8 @@ def test1(tmpdir):
                 (sky_frame, None)
                ]
     wcsobj = gwcs.wcs.WCS(pipeline)
-    tree = {'wcs_set': WcsSet(default=wcsobj, extra=wcsobj)}
+    wcs_set = WcsSet(default=wcsobj, extra=wcsobj)
+    tree = {'wcs_set': wcs_set}
+    if ret:
+      return wcs_set
     helpers.assert_roundtrip_tree(tree, tmpdir)

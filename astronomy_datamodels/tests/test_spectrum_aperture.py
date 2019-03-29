@@ -12,10 +12,12 @@ import astropy.coordinates as coords
 from ..spectrum_aperture import SpectrumAperture
 from ..telescope import Telescope
 
-def test1(tmpdir):
+def test1(tmpdir, ret=False):
     center = [23.7, 15.2]
     footprint = [[23, 24.4, 24.4, 23], [10.2, 10.2, 20.2, 20.2]]
     spectrum_aperture = SpectrumAperture(center=center, footprint=footprint,
                                          aperture_id='42', meta={'purpose':'background'})
     tree = {'spectrum_aperture': spectrum_aperture}
+    if ret:
+        return spectrum_aperture
     helpers.assert_roundtrip_tree(tree, tmpdir)

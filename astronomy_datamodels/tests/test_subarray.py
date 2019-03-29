@@ -9,7 +9,9 @@ from asdf import util
 from asdf.tests import helpers
 from ..subarray import Subarray
 
-def test1(tmpdir):
+def test1(tmpdir, ret=False):
     subarray = Subarray(offset=(100, 131), size=(256, 256), name='SA1')
     tree = {'subarray': subarray}
+    if ret:
+        return subarray
     helpers.assert_roundtrip_tree(tree, tmpdir)

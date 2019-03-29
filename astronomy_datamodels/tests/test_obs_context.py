@@ -20,7 +20,7 @@ from ..obs_context import ObsContext
 
 from ..telescope import Telescope
 
-def test1(tmpdir):
+def test1(tmpdir, ret=False):
     obs_buddy = Observer('Marvin')
     obs1 = Observer(name='Dummy Name Jr.',
                    institution='Harvaard',
@@ -55,4 +55,6 @@ def test1(tmpdir):
                             proposal=prop, observers=[obs1, obs2],
                             target=target, meta={'purpose':'travel'})
     tree = {'obs_context': obscontext}
+    if ret:
+        return obscontext
     helpers.assert_roundtrip_tree(tree, tmpdir)
